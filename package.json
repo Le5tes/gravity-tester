@@ -18,6 +18,6 @@
   },
   "homepage": "https://github.com/Le5tes/barnes-hut-tree-builder-tester#readme",
   "dependencies": {
-    "barnes-hut-tree-builder": "0.0.2"
+    "barnes-hut-tree-builder": "latest"
   }
 }

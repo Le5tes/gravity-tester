@@ -13,3 +13,4 @@ runTest = async (numberOfBodies) => {
 
 runTest(1000);
 runTest(10000);
+runTest(20000);
