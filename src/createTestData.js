@@ -5,8 +5,8 @@ function generateRandomBodies(numberOfBodies, size, minMass, maxMass) {
 const generateBody = (size, minMass, maxMass) => {
     return {
         mass: Math.random() * (maxMass - minMass) + minMass,
-        posX: Math.random() * size,
-        posY: Math.random() * size
+        positionX: Math.random() * size,
+        positionY: Math.random() * size
     };
 }
 
