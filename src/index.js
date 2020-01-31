@@ -12,6 +12,13 @@ runTest = async (numberOfBodies) => {
     console.log(`created ${buildArray.length} nodes`)
 }
 
+runTestInternalPerformanceLogs = async (numberOfBodies) => {
+    console.log(`Running test with internal logs, ${numberOfBodies} bodies`)
+    treeBuilder = await TreeBuilder.create({debug: true});
+    bodies = generateRandomBodies(numberOfBodies, 1000, 100, 500)
+    treeBuilder.buildToArray(bodies, 1000,0,0);
+}
+
 runRepeatedTest = async(numberOfBodies, times) => {
     treeBuilder = await TreeBuilder.create();
     console.log(`Running repeated tests with ${numberOfBodies} bodies`)
@@ -30,6 +37,8 @@ runTests = async () => {
     await runTest(10000);
     await runTest(20000);
     await runTest(100000);
+
+    await runTestInternalPerformanceLogs(20000);
 
     await runRepeatedTest(10000, 20);
 }
