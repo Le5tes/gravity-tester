@@ -1,11 +1,11 @@
 {
-  "name": "barnes-hut-tree-builder-tester",
+  "name": "@gravity/gravity-tester",
   "version": "0.0.1",
-  "description": "A utility for testing the performance of my barnes-hut-tree-builder",
+  "description": "A utility for testing the performance of my gravity simulations",
   "main": "index.js",
   "scripts": {
     "start": "node ./src/index.js",
-    "test": "test"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -19,5 +19,8 @@
   "homepage": "https://github.com/Le5tes/barnes-hut-tree-builder-tester#readme",
   "dependencies": {
     "barnes-hut-tree-builder": "latest"
+  },
+  "devDependencies": {
+    "jest": "^25.1.0"
   }
 }
