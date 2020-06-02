@@ -122,4 +122,16 @@ describe('Tester', () => {
     });
 });
 
+describe('Tester integration', () => {
+    it('should create sucessfully with default params', () => {
+        expect(new Tester()).toBeTruthy();
+    });
 
+    it('should successfully test', async () => {
+        performance = require('perf_hooks').performance;
+
+        const val = await new Tester().testBuild(1000);
+
+        expect(val).toBeTruthy();
+    });
+});

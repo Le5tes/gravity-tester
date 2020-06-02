@@ -1,7 +1,7 @@
 class Tester {
   constructor(
-    treeBuilderClass = require('barnes-hut-tree-builder').BarnesHutTreeBuilder,
-    testDataBuilder = require('../test-data/test-data')) {
+    treeBuilderClass = require('@gravity-simulator/barnes-hut-tree-builder').BarnesHutTreeBuilder,
+    testDataBuilder = require('../test-data/createTestData')) {
     this.treeBuilderClass = treeBuilderClass;
     this.testDataBuilder = testDataBuilder;
   }
