@@ -18,7 +18,8 @@
   },
   "homepage": "https://github.com/Le5tes/gravity-tester#readme",
   "dependencies": {
-    "@gravity-simulator/barnes-hut-tree-builder": "latest"
+    "@gravity-simulator/barnes-hut-tree-builder": "latest",
+    "@gravity-simulator/gravity-resolver": "latest"
   },
   "devDependencies": {
     "jest": "^25.1.0"
