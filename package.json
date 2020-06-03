@@ -1,6 +1,6 @@
 {
   "name": "@gravity-simulator/gravity-tester",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A utility for testing the performance of my gravity simulations",
   "main": "index.js",
   "scripts": {
