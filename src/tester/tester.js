@@ -38,15 +38,15 @@ class Tester {
     const treeBuilder = await this.treeBuilderClass.create();
     let bodyTree;
     return [
-      this.time(() => bodyTree = treeBuilder.build(bodies, size, 0, 0)),
-      this.testResolveTree(bodyTree)
+      this.time(() => bodyTree = treeBuilder.buildToArray(bodies, size, 0, 0)),
+      this.testResolveTree(bodies, bodyTree)
     ]
   }
 
-  testResolveTree(bodyTree) {
+  testResolveTree(bodies, bodyTree) {
     const resolver = new this.TreeResolver();
 
-    return this.time(() => resolver.resolveNewPositions(bodyTree));
+    return this.time(() => resolver.resolveNewPositions(bodies, bodyTree));
   }
 
   time(fn) {

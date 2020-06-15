@@ -198,10 +198,10 @@ describe('Tester', () => {
         });
 
         it('should call the barnes hut resolve function with the body tree', () => {
-            tester.testResolveTree([{mass: 100, xPosition: 50, yPosition: 800}]);
+            tester.testResolveTree([{mass: 100, xPosition: 50, yPosition: 800}], [{mass: 101, xPosition: 50, yPosition: 800}]);
 
             expect(stubBarnesHutResolve.callCount).toEqual(1);
-            expect(stubBarnesHutResolve.lastCallArgs).toEqual([[{mass: 100, xPosition: 50, yPosition: 800}]]);
+            expect(stubBarnesHutResolve.lastCallArgs).toEqual([[{mass: 100, xPosition: 50, yPosition: 800}], [{mass: 101, xPosition: 50, yPosition: 800}]]);
         });
 
         it('should return the time taken in ms', () => {
@@ -223,7 +223,7 @@ describe('Tester', () => {
                 generateRandomBodiesReturnVal = [{mass:1, xPosition: 1, yPosition: 2}, {mass:1, xPosition: 1, yPosition: 2}, {mass:1, xPosition: 1, yPosition: 2}]
                 stubTestData.generateRandomBodies.returnVal = generateRandomBodiesReturnVal;
                 stubBuildReturn =[[0,1,2,3],[0,1,2,3]]
-                stubTreeBuilder.build.returnVal = stubBuildReturn;
+                stubTreeBuilder.buildToArray.returnVal = stubBuildReturn;
                 performance.now.sequencedReturnValues = [0,5, 10, 20];
                 result = await tester.testBuildAndResolveTree(1000);
             });
@@ -240,18 +240,18 @@ describe('Tester', () => {
                 expect(stubTestData.generateRandomBodies.lastCallArgs[3]).toEqual(0);
             });
 
-            it('should call the build method on the treebuilder with the number of bodies passed in, the default size, and the origin at 0,0', () => {
-                expect(stubTreeBuilder.build.callCount).toEqual(1);
-                expect(stubTreeBuilder.build.lastCallArgs[0]).toEqual(generateRandomBodiesReturnVal);
-                expect(stubTreeBuilder.build.lastCallArgs[1]).toEqual(1000);
-                expect(stubTreeBuilder.build.lastCallArgs[2]).toEqual(0);
-                expect(stubTreeBuilder.build.lastCallArgs[3]).toEqual(0);
+            it('should call the buildToArray method on the treebuilder with the number of bodies passed in, the default size, and the origin at 0,0', () => {
+                expect(stubTreeBuilder.buildToArray.callCount).toEqual(1);
+                expect(stubTreeBuilder.buildToArray.lastCallArgs[0]).toEqual(generateRandomBodiesReturnVal);
+                expect(stubTreeBuilder.buildToArray.lastCallArgs[1]).toEqual(1000);
+                expect(stubTreeBuilder.buildToArray.lastCallArgs[2]).toEqual(0);
+                expect(stubTreeBuilder.buildToArray.lastCallArgs[3]).toEqual(0);
             });
 
 
             it('should call the barnes hut resolve function with the body tree', () => {
                 expect(stubBarnesHutResolve.callCount).toEqual(1);
-                expect(stubBarnesHutResolve.lastCallArgs).toEqual([stubBuildReturn]);
+                expect(stubBarnesHutResolve.lastCallArgs).toEqual([generateRandomBodiesReturnVal, stubBuildReturn]);
             });
     
             it('should return the time taken in ms', () => {
@@ -268,7 +268,7 @@ describe('Tester', () => {
                 generateRandomBodiesReturnVal = [{mass:1, xPosition: 1, yPosition: 2}, {mass:1, xPosition: 1, yPosition: 2}, {mass:1, xPosition: 1, yPosition: 2}]
                 stubTestData.generateRandomBodies.returnVal = generateRandomBodiesReturnVal;
                 stubBuildReturn =[[0,1,2,3],[0,1,2,3]]
-                stubTreeBuilder.build.returnVal = stubBuildReturn;
+                stubTreeBuilder.buildToArray.returnVal = stubBuildReturn;
                 performance.now.sequencedReturnValues = [0,5, 10, 20];
                 result = await tester.testBuildAndResolveTree(1000, 10000, 2000, 5);
             });
@@ -282,11 +282,11 @@ describe('Tester', () => {
             });
 
             it('should call the build method on the treebuilder with the number of bodies passed in, the size passed in, and the origin at 0,0', () => {
-                expect(stubTreeBuilder.build.callCount).toEqual(1);
-                expect(stubTreeBuilder.build.lastCallArgs[0]).toEqual(generateRandomBodiesReturnVal);
-                expect(stubTreeBuilder.build.lastCallArgs[1]).toEqual(10000);
-                expect(stubTreeBuilder.build.lastCallArgs[2]).toEqual(0);
-                expect(stubTreeBuilder.build.lastCallArgs[3]).toEqual(0);
+                expect(stubTreeBuilder.buildToArray.callCount).toEqual(1);
+                expect(stubTreeBuilder.buildToArray.lastCallArgs[0]).toEqual(generateRandomBodiesReturnVal);
+                expect(stubTreeBuilder.buildToArray.lastCallArgs[1]).toEqual(10000);
+                expect(stubTreeBuilder.buildToArray.lastCallArgs[2]).toEqual(0);
+                expect(stubTreeBuilder.buildToArray.lastCallArgs[3]).toEqual(0);
             });
         });
     });
@@ -301,6 +301,14 @@ describe('Tester integration', () => {
         performance = require('perf_hooks').performance;
 
         const val = await new Tester().testBuild(1000);
+
+        expect(val).toBeTruthy();
+    });
+
+    it('should successfully test with build from tree', async () => {
+        performance = require('perf_hooks').performance;
+
+        const val = await new Tester().testBuildAndResolveTree(1000);
 
         expect(val).toBeTruthy();
     });
