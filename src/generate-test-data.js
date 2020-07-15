@@ -5,6 +5,19 @@ const util = require('util');
 
 
 
+// const bodies = [{
+//     mass: 100,
+//     positionX: 100,
+//     positionY: 100,
+//     velocityX: 0,
+//     velocityY: 0
+// }, {
+//     mass: 100,
+//     positionX: 0,
+//     positionY: 0,
+//     velocityX: 0,
+//     velocityY: 0
+// }];
 const bodies = generateRandomBodies(1000,10000,0,200);
 TreeBuilder.create().then(treebuilder => {
     const tree = treebuilder.buildToArray(bodies, 10000, 0, 0);

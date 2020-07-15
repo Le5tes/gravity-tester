@@ -6,7 +6,9 @@ const generateBody = (size, minMass, maxMass) => {
     return {
         mass: Math.random() * (maxMass - minMass) + minMass,
         positionX: Math.random() * size,
-        positionY: Math.random() * size
+        positionY: Math.random() * size,
+        velocityX: 0,
+        velocityY: 0
     };
 }
 

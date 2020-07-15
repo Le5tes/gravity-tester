@@ -38,7 +38,7 @@ describe('Tester', () => {
     describe('#testBuildWithData', () => {
         let result;
         beforeEach(async () => {
-            result = await tester.testBuildWithData([{mass: 100, xPosition: 50, yPosition: 800}], 1000, 0, 0);
+            result = await tester.testBuildWithData([{mass: 100, positionX: 50, positionY: 800}], 1000, 0, 0);
         });
 
         it('should exist', () => {
@@ -52,7 +52,7 @@ describe('Tester', () => {
         it('should call the build method on the treebuilder with the data passed in', () => {
             expect(stubTreeBuilder.build.callCount).toEqual(1);
         
-            expect(stubTreeBuilder.build.lastCallArgs).toEqual([[{mass: 100, xPosition: 50, yPosition: 800}], 1000, 0, 0]);
+            expect(stubTreeBuilder.build.lastCallArgs).toEqual([[{mass: 100, positionX: 50, positionY: 800}], 1000, 0, 0]);
         });
 
         it('should return the time taken in ms', () => {
@@ -64,7 +64,7 @@ describe('Tester', () => {
         let result;
         let generateRandomBodiesReturnVal;
         beforeEach(async () => {
-            generateRandomBodiesReturnVal = [{mass:1, xPosition: 1, yPosition: 2}, {mass:1, xPosition: 1, yPosition: 2}, {mass:1, xPosition: 1, yPosition: 2}]
+            generateRandomBodiesReturnVal = [{mass:1, positionX: 1, positionY: 2}, {mass:1, positionX: 1, positionY: 2}, {mass:1, positionX: 1, positionY: 2}]
             stubTestData.generateRandomBodies.returnVal = generateRandomBodiesReturnVal;
         });
 
@@ -131,14 +131,14 @@ describe('Tester', () => {
         });
 
         it('should call the resolve function with the bodies', () => {
-            tester.testResolveWithData([{mass: 100, xPosition: 50, yPosition: 800}]);
+            tester.testResolveWithData([{mass: 100, positionX: 50, positionY: 800}]);
 
             expect(stubResolve.callCount).toEqual(1);
-            expect(stubResolve.lastCallArgs).toEqual([[{mass: 100, xPosition: 50, yPosition: 800}]]);
+            expect(stubResolve.lastCallArgs).toEqual([[{mass: 100, positionX: 50, positionY: 800}]]);
         });
 
         it('should return the time taken in ms', () => {
-            expect(tester.testResolveWithData([{mass: 100, xPosition: 50, yPosition: 800}])).toEqual(5);
+            expect(tester.testResolveWithData([{mass: 100, positionX: 50, positionY: 800}])).toEqual(5);
         });
     });
 
@@ -146,7 +146,7 @@ describe('Tester', () => {
         let result;
         let generateRandomBodiesReturnVal;
         beforeEach(async () => {
-            generateRandomBodiesReturnVal = [{mass:1, xPosition: 1, yPosition: 2}, {mass:1, xPosition: 1, yPosition: 2}, {mass:1, xPosition: 1, yPosition: 2}]
+            generateRandomBodiesReturnVal = [{mass:1, positionX: 1, positionY: 2}, {mass:1, positionX: 1, positionY: 2}, {mass:1, positionX: 1, positionY: 2}]
             stubTestData.generateRandomBodies.returnVal = generateRandomBodiesReturnVal;
         });
 
@@ -198,14 +198,14 @@ describe('Tester', () => {
         });
 
         it('should call the barnes hut resolve function with the body tree', () => {
-            tester.testResolveTree([{mass: 100, xPosition: 50, yPosition: 800}], [{mass: 101, xPosition: 50, yPosition: 800}]);
+            tester.testResolveTree([{mass: 100, positionX: 50, positionY: 800}], [{mass: 101, positionX: 50, positionY: 800}]);
 
             expect(stubBarnesHutResolve.callCount).toEqual(1);
-            expect(stubBarnesHutResolve.lastCallArgs).toEqual([[{mass: 100, xPosition: 50, yPosition: 800}], [{mass: 101, xPosition: 50, yPosition: 800}]]);
+            expect(stubBarnesHutResolve.lastCallArgs).toEqual([[{mass: 100, positionX: 50, positionY: 800}], [{mass: 101, positionX: 50, positionY: 800}]]);
         });
 
         it('should return the time taken in ms', () => {
-            expect(tester.testResolveTree([{mass: 100, xPosition: 50, yPosition: 800}])).toEqual(5);
+            expect(tester.testResolveTree([{mass: 100, positionX: 50, positionY: 800}])).toEqual(5);
         });
     });
 
@@ -220,7 +220,7 @@ describe('Tester', () => {
             let stubBuildReturn;
 
             beforeEach(async () => {
-                generateRandomBodiesReturnVal = [{mass:1, xPosition: 1, yPosition: 2}, {mass:1, xPosition: 1, yPosition: 2}, {mass:1, xPosition: 1, yPosition: 2}]
+                generateRandomBodiesReturnVal = [{mass:1, positionX: 1, positionY: 2}, {mass:1, positionX: 1, positionY: 2}, {mass:1, positionX: 1, positionY: 2}]
                 stubTestData.generateRandomBodies.returnVal = generateRandomBodiesReturnVal;
                 stubBuildReturn =[[0,1,2,3],[0,1,2,3]]
                 stubTreeBuilder.buildToArray.returnVal = stubBuildReturn;
@@ -265,7 +265,7 @@ describe('Tester', () => {
             let stubBuildReturn;
 
             beforeEach(async () => {
-                generateRandomBodiesReturnVal = [{mass:1, xPosition: 1, yPosition: 2}, {mass:1, xPosition: 1, yPosition: 2}, {mass:1, xPosition: 1, yPosition: 2}]
+                generateRandomBodiesReturnVal = [{mass:1, positionX: 1, positionY: 2}, {mass:1, positionX: 1, positionY: 2}, {mass:1, positionX: 1, positionY: 2}]
                 stubTestData.generateRandomBodies.returnVal = generateRandomBodiesReturnVal;
                 stubBuildReturn =[[0,1,2,3],[0,1,2,3]]
                 stubTreeBuilder.buildToArray.returnVal = stubBuildReturn;
