@@ -7,6 +7,8 @@ class Tester {
     this.testDataBuilder = testDataBuilder;
     this.GravityResolver = resolverModule.GravityResolver 
     this.TreeResolver = resolverModule.BarnesHutTreeResolver 
+    this.resolver = new this.GravityResolver();
+    this.treeResolver = new this.TreeResolver();
   }
 
   async testBuild(bodyCount, size = 1000, maxMass = 1000, minMass = 0) {
@@ -27,9 +29,7 @@ class Tester {
   }
 
   testResolveWithData(bodies) {
-    const resolver = new this.GravityResolver();
-
-    return this.time(() => resolver.resolveNewPositions(bodies));
+    return this.time(() => this.resolver.resolveNewPositions(bodies));
   }
 
   async testBuildAndResolveTree(bodyCount, size = 1000, maxMass = 1000, minMass = 0) {
@@ -44,10 +44,10 @@ class Tester {
   }
 
   testResolveTree(bodies, bodyTree) {
-    const resolver = new this.TreeResolver();
-
-    return this.time(() => resolver.resolveNewPositions(bodies, bodyTree));
+    return this.time(() => this.treeResolver.resolveNewPositions(bodies, bodyTree));
   }
+
+
 
   time(fn) {
     const t1 = performance.now();
