@@ -290,6 +290,12 @@ describe('Tester', () => {
             });
         });
     });
+
+    describe('#multipleTestBuildAndResolve', () => {
+        it('should exist', () => {
+            expect(tester.multipleTestBuildAndResolve).toBeTruthy();
+        });
+    });
 });
 
 describe('Tester integration', () => {

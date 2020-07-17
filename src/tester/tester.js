@@ -47,7 +47,16 @@ class Tester {
     return this.time(() => this.treeResolver.resolveNewPositions(bodies, bodyTree));
   }
 
+  async multipleTestBuildAndResolve(bodyCount, number, size = 1000, maxMass = 1000, minMass = 0) {
+    const bodies = this.testDataBuilder.generateRandomBodies(bodyCount, size, maxMass, minMass)
 
+    const treeBuilder = await this.treeBuilderClass.create();
+    let bodyTree;
+    return Array(bodyCount).fill(1).map(() => [
+      this.time(() => bodyTree = treeBuilder.buildToArray(bodies, size, 0, 0)),
+      this.testResolveTree(bodies, bodyTree)
+    ]);
+  }
 
   time(fn) {
     const t1 = performance.now();
